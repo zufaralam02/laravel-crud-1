@@ -27,10 +27,10 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/number/{id}', [HomeController::class, 'number']);
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/teacher', [TeacherController::class, 'read'])->name('teacher');
+Route::get('/', [HomeController::class, 'get']);
+Route::get('/teacher', [TeacherController::class, 'get'])->name('teacher');
 Route::get('/teacher/detail/{id}', [TeacherController::class, 'detail']);
 Route::get('/teacher/add', [TeacherController::class, 'add']);
-Route::post('/teacher/insert', [TeacherController::class, 'insert']);
-Route::get('/student', [StudentController::class, 'index']);
-Route::get('/user', [UserController::class, 'index']);
+Route::post('/teacher/add/process', [TeacherController::class, 'processAdd']);
+Route::get('/student', [StudentController::class, 'get']);
+Route::get('/user', [UserController::class, 'get']);

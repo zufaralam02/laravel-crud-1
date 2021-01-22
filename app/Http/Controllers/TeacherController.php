@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\TeacherModel;
-use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
@@ -12,10 +11,10 @@ class TeacherController extends Controller
         $this->TeacherModel = new TeacherModel();
     }
 
-    public function read()
+    public function get()
     {
         $data = [
-            'teacher' => $this->TeacherModel->read()
+            'teacher' => $this->TeacherModel->get()
         ];
 
         return view('v_teacher', $data);
@@ -36,10 +35,10 @@ class TeacherController extends Controller
 
     public function add()
     {
-        return view('v_add_teacher');
+        return view('v_teacher_add');
     }
 
-    public function insert()
+    public function processAdd()
     {
         Request()->validate([
             'nip' => 'required|unique:teacher,nip|min:6|max:6',
@@ -58,7 +57,7 @@ class TeacherController extends Controller
             'name' => Request()->name,
             'subject' => Request()->subject,
             'gender' => Request()->gender,
-            'photo' => Request()->photoName
+            'photo' => $photoName
         ];
 
         $this->TeacherModel->add($data);

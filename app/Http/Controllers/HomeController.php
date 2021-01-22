@@ -9,7 +9,7 @@ class HomeController extends Controller
     //     return 'The number is : ' . $id;
     // }
 
-    public function index()
+    public function get()
     {
         $data = [
             'name' => 'Fulan',

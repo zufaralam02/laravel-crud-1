@@ -4,7 +4,7 @@
 
 @section('content')
 
-<form action="/teacher/insert" method="POST" enctype="multipart/form-data">
+<form action="/teacher/add/process" method="POST" enctype="multipart/form-data">
     @csrf
 
     <div class="content">

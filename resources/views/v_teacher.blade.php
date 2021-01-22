@@ -35,15 +35,15 @@
         <!-- <?php $no = 1; ?> -->
         @foreach ($teacher as $t)
         <tr>
-            <!-- <td>{{$no++}}</td> -->
-            <td>{{$t->id}}</td>
-            <td>{{$t->nip}}</td>
-            <td>{{$t->name}}</td>
-            <td>{{$t->subject}}</td>
-            <td>{{$t->gender}}</td>
-            <td><img src="{{url('photo/' . $t->photo)}}" width="40px"></td>
+            <!-- <td>{{ $no++ }}</td> -->
+            <td>{{ $t->id }}</td>
+            <td>{{ $t->nip }}</td>
+            <td>{{ $t->name }}</td>
+            <td>{{ $t->subject }}</td>
+            <td>{{ $t->gender }}</td>
+            <td><img src="{{ url('photo/' . $t->photo) }}" width="40px"></td>
             <td>
-                <a href="/teacher/detail/{{$t->id}}" class="btn btn-sm btn-success">Detail</a>
+                <a href="/teacher/detail/{{ $t->id }}" class="btn btn-sm btn-success">Detail</a>
                 <a href="" class="btn btn-sm btn-warning">Update</a>
                 <a href="" class="btn btn-sm btn-danger">Delete</a>
             </td>
