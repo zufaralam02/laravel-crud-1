@@ -39,4 +39,9 @@ class TeacherModel extends Model
     {
         DB::table('teacher')->insert($data);
     }
+
+    public function edit($id, $data)
+    {
+        DB::table('teacher')->where('id', $id)->update($data);
+    }
 }

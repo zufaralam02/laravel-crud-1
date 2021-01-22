@@ -38,7 +38,7 @@ class TeacherController extends Controller
         return view('v_teacher_add');
     }
 
-    public function processAdd()
+    public function addProcess()
     {
         Request()->validate([
             'nip' => 'required|unique:teacher,nip|min:6|max:6',
@@ -63,5 +63,47 @@ class TeacherController extends Controller
         $this->TeacherModel->add($data);
 
         return redirect()->route('teacher')->with('message', 'successfully added teacher');
+    }
+
+    public function edit($id)
+    {
+        if (!$this->TeacherModel->detail($id)) {
+            abort(404);
+        }
+
+        $data = [
+            'teacher' => $this->TeacherModel->detail($id)
+        ];
+
+        return view('v_teacher_edit', $data);
+    }
+
+    public function editProcess($id)
+    {
+        Request()->validate([
+            // 'nip' => 'required|unique:teacher,nip|min:6|max:6',
+            'name' => 'required',
+            'subject' => 'required',
+            'gender' => 'required|in:male,female',
+            'photo' => 'mimes:jpg,jpeg,png|max:1024',
+        ]);
+
+        if (Request()->photo <> '') {
+            $photo = Request()->photo;
+            $photoName = Request()->nip . '.' . $photo->extension();
+            $photo->move(public_path('photo'), $photoName);
+        }
+
+        $data = [
+            'nip' => Request()->nip,
+            'name' => Request()->name,
+            'subject' => Request()->subject,
+            'gender' => Request()->gender,
+            'photo' => Request()->photo <> '' ? $photoName : null
+        ];
+
+        $this->TeacherModel->edit($id, $data);
+
+        return redirect()->route('teacher')->with('message', 'successfully changed teacher');
     }
 }
