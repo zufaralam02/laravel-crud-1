@@ -45,11 +45,34 @@
             <td>
                 <a href="/teacher/detail/{{ $t->id }}" class="btn btn-sm btn-success">Detail</a>
                 <a href="/teacher/edit/{{ $t->id }}" class="btn btn-sm btn-warning">Edit</a>
-                <a href="" class="btn btn-sm btn-danger">Delete</a>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{ $t->id }}">
+                    Delete
+                </button>
             </td>
         </tr>
         @endforeach
     </tbody>
 </table>
+
+@foreach ($teacher as $t)
+<div class="modal modal-danger fade" id="delete{{ $t->id }}">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Delete {{ $t->name }}'s data</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">No</button>
+                <a href="/teacher/delete/{{ $t->id }}" class="btn btn-outline">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
 
 @endsection

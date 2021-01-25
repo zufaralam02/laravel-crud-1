@@ -14,7 +14,7 @@ class TeacherController extends Controller
     public function get()
     {
         $data = [
-            'teacher' => $this->TeacherModel->get()
+            'teacher' => $this->TeacherModel->getData()
         ];
 
         return view('v_teacher', $data);
@@ -22,12 +22,12 @@ class TeacherController extends Controller
 
     public function detail($id)
     {
-        if (!$this->TeacherModel->detail($id)) {
+        if (!$this->TeacherModel->detailData($id)) {
             abort(404);
         }
 
         $data = [
-            'teacher' => $this->TeacherModel->detail($id)
+            'teacher' => $this->TeacherModel->detailData($id)
         ];
 
         return view('v_teacher_detail', $data);
@@ -60,19 +60,19 @@ class TeacherController extends Controller
             'photo' => $photoName
         ];
 
-        $this->TeacherModel->add($data);
+        $this->TeacherModel->addData($data);
 
         return redirect()->route('teacher')->with('message', 'successfully added teacher');
     }
 
     public function edit($id)
     {
-        if (!$this->TeacherModel->detail($id)) {
+        if (!$this->TeacherModel->detailData($id)) {
             abort(404);
         }
 
         $data = [
-            'teacher' => $this->TeacherModel->detail($id)
+            'teacher' => $this->TeacherModel->detailData($id)
         ];
 
         return view('v_teacher_edit', $data);
@@ -102,8 +102,21 @@ class TeacherController extends Controller
             'photo' => Request()->photo <> '' ? $photoName : null
         ];
 
-        $this->TeacherModel->edit($id, $data);
+        $this->TeacherModel->editData($id, $data);
 
         return redirect()->route('teacher')->with('message', 'successfully changed teacher');
+    }
+
+    public function delete($id)
+    {
+        $teacher = $this->TeacherModel->detailData($id);
+
+        if ($teacher->photo <> "") {
+            unlink(public_path('photo') . '/' . $teacher->photo);
+        }
+
+        $this->TeacherModel->deleteData($id);
+
+        return redirect()->route('teacher')->with('message', 'successfully deleted teacher');
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class TeacherModel extends Model
 {
-    public function get()
+    public function getData()
     {
         // return [
         //     [
@@ -30,18 +30,23 @@ class TeacherModel extends Model
         return DB::table('teacher')->get();
     }
 
-    public function detail($id)
+    public function detailData($id)
     {
         return DB::table('teacher')->where('id', $id)->first();
     }
 
-    public function add($data)
+    public function addData($data)
     {
         DB::table('teacher')->insert($data);
     }
 
-    public function edit($id, $data)
+    public function editData($id, $data)
     {
         DB::table('teacher')->where('id', $id)->update($data);
+    }
+
+    public function deleteData($id)
+    {
+        DB::table('teacher')->where('id', $id)->delete();
     }
 }
