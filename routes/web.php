@@ -28,6 +28,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/number/{id}', [HomeController::class, 'number']);
 
 Route::get('/', [HomeController::class, 'get']);
+
 Route::get('/teacher', [TeacherController::class, 'get'])->name('teacher');
 Route::get('/teacher/detail/{id}', [TeacherController::class, 'detail']);
 Route::get('/teacher/add', [TeacherController::class, 'add']);
@@ -35,5 +36,7 @@ Route::post('/teacher/add/process', [TeacherController::class, 'addProcess']);
 Route::get('/teacher/edit/{id}', [TeacherController::class, 'edit']);
 Route::post('/teacher/edit/process/{id}', [TeacherController::class, 'editProcess']);
 Route::get('/teacher/delete/{id}', [TeacherController::class, 'delete']);
+
 Route::get('/student', [StudentController::class, 'get']);
+
 Route::get('/user', [UserController::class, 'get']);

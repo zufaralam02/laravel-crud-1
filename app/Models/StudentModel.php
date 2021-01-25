@@ -2,10 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class StudentModel extends Model
 {
-    use HasFactory;
+    public function getData()
+    {
+        return DB::table('student')
+            ->leftJoin('grade', 'grade.id', '=', 'student.grade_id')
+            ->leftJoin('subject', 'subject.id', '=', 'student.subject_id')
+            ->get();
+    }
 }
