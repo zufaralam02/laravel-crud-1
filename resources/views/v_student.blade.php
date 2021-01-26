@@ -4,6 +4,9 @@
 
 @section('content')
 
+<a href="/student/print" target="_blank" class="btn btn-primary ">Print</a>
+<a href="/student/print/pdf" target="_blank" class="btn btn-primary ">Print PDF</a>
+
 <table class="table table-bordered">
     <thead>
         <tr>

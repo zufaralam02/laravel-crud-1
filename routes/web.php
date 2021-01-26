@@ -38,5 +38,7 @@ Route::post('/teacher/edit/process/{id}', [TeacherController::class, 'editProces
 Route::get('/teacher/delete/{id}', [TeacherController::class, 'delete']);
 
 Route::get('/student', [StudentController::class, 'get']);
+Route::get('/student/print', [StudentController::class, 'print']);
+Route::get('/student/print/pdf', [StudentController::class, 'printPDF']);
 
 Route::get('/user', [UserController::class, 'get']);
