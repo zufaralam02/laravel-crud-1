@@ -42,3 +42,7 @@ Route::get('/student/print', [StudentController::class, 'print']);
 Route::get('/student/print/pdf', [StudentController::class, 'printPDF']);
 
 Route::get('/user', [UserController::class, 'get']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'get'])->name('home');

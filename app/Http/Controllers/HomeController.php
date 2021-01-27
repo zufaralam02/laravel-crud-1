@@ -2,20 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 class HomeController extends Controller
 {
-    // public function number($id)
-    // {
-    //     return 'The number is : ' . $id;
-    // }
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function get()
     {
-        $data = [
-            'name' => 'Fulan',
-            'address' => 'Tangerang'
-        ];
-
-        return view('v_home', $data);
+        return view('v_home');
     }
 }
